@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cyber-themed design system for red team portfolio */
+
+@layer base {
+	:root {
+		/* Cyber Dark Theme */
+		--background: 210 15% 8%;
+		--foreground: 120 100% 85%;
+
+		--card: 210 15% 12%;
+		--card-foreground: 120 100% 85%;
+
+		--popover: 210 15% 10%;
+		--popover-foreground: 120 100% 85%;
+
+		--primary: 120 100% 50%;
+		--primary-foreground: 210 15% 8%;
+		--primary-glow: 120 100% 60%;
+
+		--secondary: 210 15% 15%;
+		--secondary-foreground: 120 80% 75%;
+
+		--muted: 210 15% 14%;
+		--muted-foreground: 120 20% 65%;
+
+		--accent: 0 100% 50%;
+		--accent-foreground: 210 15% 8%;
+
+		--destructive: 0 84% 60%;
+		--destructive-foreground: 210 15% 95%;
+
+		--success: 120 100% 50%;
+		--success-foreground: 210 15% 8%;
+
+		--warning: 60 100% 50%;
+		--warning-foreground: 210 15% 8%;
+
+		--border: 210 15% 20%;
+		--input: 210 15% 15%;
+		--ring: 120 100% 50%;
+
+		/* Cyber-specific tokens */
+		--cyber-green: 120 100% 50%;
+		--cyber-red: 0 100% 50%;
+		--cyber-blue: 200 100% 50%;
+		--cyber-purple: 280 100% 70%;
+		--matrix-bg: 210 15% 6%;
+
+		/* Gradients */
+		--gradient-cyber: linear-gradient(
+			135deg,
+			hsl(var(--cyber-green)),
+			hsl(var(--cyber-blue))
+		);
+		--gradient-matrix: linear-gradient(
+			180deg,
+			transparent,
+			hsl(var(--cyber-green) / 0.1)
+		);
+		--gradient-card: linear-gradient(
+			135deg,
+			hsl(var(--card)),
+			hsl(210 15% 14%)
+		);
+		--gradient-glow: radial-gradient(
+			circle,
+			hsl(var(--cyber-green) / 0.3),
+			transparent
+		);
+
+		/* Shadows */
+		--shadow-cyber: 0 0 20px hsl(var(--cyber-green) / 0.3);
+		--shadow-strong: 0 8px 30px hsl(var(--cyber-green) / 0.2);
+		--shadow-matrix: 0 0 50px hsl(var(--cyber-green) / 0.1);
+
+		/* Text effects */
+		--text-glow: 0 0 10px hsl(var(--cyber-green) / 0.8);
+		--text-shadow: 2px 2px 4px hsl(210 15% 0% / 0.8);
+
+		--radius: 0.3rem;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground font-mono;
+		font-family: "Fira Code", monospace;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "Orbitron", monospace;
+		font-weight: 700;
+	}
+
+	.font-cyber {
+		font-family: "Orbitron", monospace;
+	}
+
+	.font-code {
+		font-family: "Fira Code", monospace;
+	}
+
+	/* Matrix background effect */
+	.matrix-bg {
+		background:
+			radial-gradient(
+				circle at 20% 50%,
+				hsl(var(--cyber-green) / 0.1) 0%,
+				transparent 50%
+			),
+			radial-gradient(
+				circle at 80% 20%,
+				hsl(var(--cyber-blue) / 0.1) 0%,
+				transparent 50%
+			),
+			radial-gradient(
+				circle at 40% 80%,
+				hsl(var(--cyber-purple) / 0.1) 0%,
+				transparent 50%
+			),
+			hsl(var(--matrix-bg));
+	}
+
+	/* Text glow effects */
+	.text-glow {
+		text-shadow: var(--text-glow);
+	}
+
+	.text-shadow {
+		text-shadow: var(--text-shadow);
+	}
+
+	/* Cyber animations */
+	@keyframes matrix-rain {
+		0% {
+			transform: translateY(-100vh);
+			opacity: 0;
+		}
+		10% {
+			opacity: 1;
+		}
+		90% {
+			opacity: 1;
+		}
+		100% {
+			transform: translateY(100vh);
+			opacity: 0;
+		}
+	}
+
+	@keyframes cyber-pulse {
+		0%,
+		100% {
+			opacity: 1;
+			box-shadow: 0 0 5px hsl(var(--cyber-green) / 0.5);
+		}
+		50% {
+			opacity: 0.8;
+			box-shadow: 0 0 20px hsl(var(--cyber-green) / 0.8);
+		}
+	}
+
+	@keyframes glitch {
+		0% {
+			transform: translate(0);
+		}
+		20% {
+			transform: translate(-2px, 2px);
+		}
+		40% {
+			transform: translate(-2px, -2px);
+		}
+		60% {
+			transform: translate(2px, 2px);
+		}
+		80% {
+			transform: translate(2px, -2px);
+		}
+		100% {
+			transform: translate(0);
+		}
+	}
+
+	@keyframes scan-line {
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(100vw);
+		}
+	}
+
+	.animate-matrix-rain {
+		animation: matrix-rain 3s linear infinite;
+	}
+
+	.animate-cyber-pulse {
+		animation: cyber-pulse 2s ease-in-out infinite;
+	}
+
+	.animate-glitch {
+		animation: glitch 0.3s ease-in-out infinite;
+	}
+
+	.animate-scan {
+		animation: scan-line 2s linear infinite;
+	}
+
+	/* Scrollbar styling */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: hsl(var(--background));
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: hsl(var(--cyber-green) / 0.5);
+		border-radius: 4px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: hsl(var(--cyber-green) / 0.8);
+	}
+}
