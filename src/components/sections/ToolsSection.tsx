@@ -116,6 +116,17 @@ export function ToolsSection() {
 			features: ["Behavior Simulation", "Safe Environment", "Learning Modules"],
 			riskLevel: "Safe",
 		},
+		{
+			name: "HELLVYRE",
+			description:
+				"Educational Distributed Denial of Service (DDoS) simulator for training and research purposes",
+			category: "Education",
+			technologies: ["Python"],
+			icon: Shield,
+			status: "Educational",
+			features: ["Behavior Simulation", "Safe Environment", "Learning Modules"],
+			riskLevel: "High",
+		},
 	];
 
 	const getRiskColor = (level: string) => {
