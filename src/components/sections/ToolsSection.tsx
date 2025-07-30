@@ -117,15 +117,19 @@ export function ToolsSection() {
 			riskLevel: "Safe",
 		},
 		{
-			name: "HELLVYRE",
+			name: "Proxy DDoS",
 			description:
-				"Educational Distributed Denial of Service (DDoS) simulator for training and research purposes",
+				"Educational Proxy Distributed Denial of Service (DDoS) simulator for training and research purposes",
 			category: "Education",
 			technologies: ["Python"],
 			icon: Shield,
 			status: "Educational",
-			features: ["Behavior Simulation", "Safe Environment", "Learning Modules"],
-			riskLevel: "High",
+			features: [
+				"Realistic DDoS Attack Simulation",
+				"Isolated & Safe Testing Environment",
+				"Denial of Service",
+			],
+			riskLevel: "Critical",
 		},
 	];
 
