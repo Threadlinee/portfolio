@@ -17,7 +17,21 @@ export function AboutSection() {
 	const skills = [
 		{
 			category: "Programming Languages",
-			items: ["C#", "Python", "JavaScript", "PowerShell", "Bash"],
+			items: [
+				"C#",
+				"Python",
+				"JavaScript",
+				"PowerShell",
+				"Bash",
+				"Rust",
+				"HTML",
+				"CSS",
+				"Tailwind CSS",
+				"Next.js",
+				"React.js",
+				"TypeScript",
+				"C++",
+			],
 		},
 		{
 			category: "Frameworks & Libraries",
@@ -25,7 +39,14 @@ export function AboutSection() {
 		},
 		{
 			category: "Security Tools",
-			items: ["Metasploit", "Burp Suite", "Nmap", "Wireshark", "Hashcat"],
+			items: [
+				"Metasploit",
+				"Burp Suite",
+				"Nmap",
+				"Wireshark",
+				"Hashcat",
+				"OWASP ZAP",
+			],
 		},
 		{
 			category: "Platforms & OS",
