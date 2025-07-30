@@ -136,7 +136,7 @@ export function ContactSection() {
 											type="email"
 											value={formData.email}
 											onChange={handleInputChange}
-											placeholder="your.email@domain.com"
+											placeholder="dionabazi5@gmail.com"
 											required
 											className="bg-muted/30 border-cyber-green/30 focus:border-cyber-green font-code"
 										/>
