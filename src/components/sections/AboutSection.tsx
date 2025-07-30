@@ -22,7 +22,7 @@ export function AboutSection() {
 				"Python",
 				"JavaScript",
 				"PowerShell",
-				"Bash",
+				"Shell",
 				"Rust",
 				"HTML",
 				"CSS",
