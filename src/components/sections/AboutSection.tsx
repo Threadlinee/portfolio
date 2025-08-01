@@ -84,7 +84,7 @@ export function AboutSection() {
 	const timeline = [
 		{
 			year: "2024",
-			title: "Senior Cybersecurity Specialist",
+			title: "Senior Cybersecurity Analyst",
 			description:
 				"Leading red team operations and developing advanced penetration testing frameworks",
 			highlight: true,
@@ -137,12 +137,11 @@ export function AboutSection() {
 									</h3>
 									<div className="space-y-4 text-muted-foreground">
 										<p>
-											I'm a cybersecurity specialist and ethical hacker
-											operating under the alias "Sno," with over 3 years of
-											experience in red team operations and security research.
-											My expertise lies in developing advanced penetration
-											testing utilities and conducting authorized security
-											assessments.
+											I'm a cybersecurity analyst and ethical hacker operating
+											under the alias "Sno," with over 3 years of experience in
+											red team operations and security research. My expertise
+											lies in developing advanced penetration testing utilities
+											and conducting authorized security assessments.
 										</p>
 										<p>
 											I specialize in network exploitation, credential dumping,
