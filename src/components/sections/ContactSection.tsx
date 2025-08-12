@@ -4,14 +4,20 @@ import { Button } from "../../components/sections/ui/button.tsx";
 import { Input } from "../../components/sections/ui/input.tsx";
 import { Textarea } from "../../components/sections/ui/textarea.tsx";
 import { Label } from "../../components/sections/ui/label.tsx";
-import { useToast } from "../../hooks/use-toast.ts";
+import {
+	AlertDialog,
+	AlertDialogContent,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogAction,
+} from "../../components/sections/ui/alert-dialog.tsx";
 import {
 	Mail,
 	MessageSquare,
 	Send,
 	Github,
-	Linkedin,
-	Twitter,
 	Shield,
 	Terminal,
 } from "lucide-react";
@@ -24,29 +30,56 @@ export function ContactSection() {
 		message: "",
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const { toast } = useToast();
-
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setIsSubmitting(true);
-
-		// Simulate form submission
-		setTimeout(() => {
-			toast({
-				title: "Message Sent Successfully!",
-				description:
-					"Thanks for reaching out. I'll get back to you within 24 hours.",
-			});
-			setFormData({ name: "", email: "", subject: "", message: "" });
-			setIsSubmitting(false);
-		}, 1000);
-	};
+	const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
+	};
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+
+		try {
+			const formElement = e.currentTarget;
+			const data = new FormData(formElement);
+			// Ensure settings are present in case someone deletes hidden inputs
+			if (!data.has("_subject")) {
+				data.append("_subject", "New message from portfolio contact form");
+			}
+			if (!data.has("_template")) {
+				data.append("_template", "table");
+			}
+			if (!data.has("_captcha")) {
+				data.append("_captcha", "false");
+			}
+
+			const response = await fetch(
+				"https://formsubmit.co/ajax/dionabazi5@gmail.com",
+				{
+					method: "POST",
+					headers: {
+						Accept: "application/json",
+					},
+					body: data,
+				},
+			);
+
+			if (!response.ok) {
+				throw new Error("Failed to send message");
+			}
+
+			setFormData({ name: "", email: "", subject: "", message: "" });
+			setIsSuccessOpen(true);
+		} catch (error) {
+			console.error(error);
+			// Optionally: surface an error state/UI here
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	const socialLinks = [
@@ -105,6 +138,16 @@ export function ContactSection() {
 							</div>
 
 							<form onSubmit={handleSubmit} className="space-y-6">
+								{/* FormSubmit settings */}
+								<input
+									type="hidden"
+									name="_subject"
+									value="New message from portfolio contact form"
+								/>
+								<input type="hidden" name="_template" value="table" />
+								<input type="hidden" name="_captcha" value="false" />
+								{/* Honeypot field for bots */}
+								<input type="text" name="_honey" style={{ display: "none" }} />
 								<div className="grid md:grid-cols-2 gap-4">
 									<div className="space-y-2">
 										<Label
@@ -292,6 +335,40 @@ export function ContactSection() {
 					</div>
 				</div>
 			</div>
+			{/* Success Modal */}
+			<ContactSuccessModal
+				open={isSuccessOpen}
+				onOpenChange={setIsSuccessOpen}
+			/>
 		</section>
+	);
+}
+
+// Success modal
+export function ContactSuccessModal({
+	open,
+	onOpenChange,
+}: {
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
+}) {
+	return (
+		<AlertDialog open={open} onOpenChange={onOpenChange}>
+			<AlertDialogContent>
+				<AlertDialogHeader>
+					<AlertDialogTitle className="text-cyber-green">
+						Email sent successfully
+					</AlertDialogTitle>
+					<AlertDialogDescription>
+						We will get back to you within 24 hours.
+					</AlertDialogDescription>
+				</AlertDialogHeader>
+				<AlertDialogFooter>
+					<AlertDialogAction onClick={() => onOpenChange(false)}>
+						Close
+					</AlertDialogAction>
+				</AlertDialogFooter>
+			</AlertDialogContent>
+		</AlertDialog>
 	);
 }
